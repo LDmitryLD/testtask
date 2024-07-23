@@ -1,0 +1,27 @@
+syntax = "proto3";
+
+package api;
+
+option go_package = "/rates";
+
+service RatesService {
+    rpc GetRates(GetRatesRequest) returns (GetRatesResponse);
+}
+
+message GetRatesRequest {
+    string market = 1;
+}
+
+message GetRatesResponse {
+    int64 timestamp = 1;
+    repeated Order asks = 2;
+    repeated Order bids = 3;
+}
+
+message Order {
+    string price = 1;
+    string volume = 2;
+    string amount = 3;
+    string factor = 4;
+    string type = 5;
+}
